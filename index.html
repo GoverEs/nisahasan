@@ -1,138 +1,65 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Hasan ❤ Nisa - Sürpriz</title>
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hasan ❤ Nisa - Sürpriz</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<div class="hearts" id="hearts"></div>
+<div id="hearts"></div>
 
-<div class="center">
-  <div class="card">
-    <header>
-      <div class="logo">H ❤ N</div>
-      <div>
-        <h1>Hasan ❤ Nisa</h1>
-        <p>İlk önce bilmeceleri çöz — sonra sana özel müzik ve not açılacak. Hazırsan başlayalım.</p>
+<main class="wrap">
+  <section id="game" class="card">
+    <h1>Hasan ❤ Nisa</h1>
+    <p>Bulmacaları çöz, sürprizi aç.</p>
+
+    <div id="riddleArea">
+      <h2 id="riddleNumber"></h2>
+      <p id="riddleQuestion"></p>
+
+      <input id="answerInput" placeholder="Cevabını yaz..." autocomplete="off" />
+      <div class="btns">
+        <button id="submitAnswer" class="btn">Cevapla</button>
+        <button id="showHint" class="btn alt">İpucu</button>
       </div>
-    </header>
+      <p id="hint" class="hint"></p>
 
-    <div class="game" style="margin-top:18px;">
-      <div class="riddleBox" id="riddleBox">
-        <h3 id="riddleTitle">1. Bilmece</h3>
-        <p id="riddleText">Hazır mısın? İlk bilmecen geliyor...</p>
-
-        <input id="answerInput" placeholder="Cevabını yaz..." autocomplete="off" />
-        <div style="display:flex; gap:8px; margin-top:10px;">
-          <button id="submitBtn">Cevapla</button>
-          <button id="skipBtn" style="background:transparent; border:1px solid rgba(255,255,255,0.06); color:white;">İpucu</button>
-        </div>
-
-        <div class="hint" id="hintText" style="display:none;"></div>
+      <div class="progress">
+        <div id="progressBar"><div id="progressFill"></div></div>
+        <span id="progressText"></span>
       </div>
 
-      <div class="side">
-        <div class="progress">
-          <div style="font-size:14px; font-weight:600;">İlerleme</div>
-          <div class="bar"><i id="barFill"></i></div>
-          <div style="margin-top:8px; font-size:13px;" id="progressText">0 / 5</div>
-        </div>
+      <div id="passwordSection" style="display:none;">
+        <p>Şifreyi gir:</p>
+        <input id="passwordInput" placeholder="Şifreyi gir" autocomplete="off" />
+        <button id="checkPassword" class="btn">Aç</button>
+        <p id="passwordMsg" class="hint"></p>
+      </div>
+    </div>
+  </section>
 
-        <div class="codeBox">
-          <div style="font-size:13px; opacity:0.9">Oyun Bittiğinde sana verilecek şifre:</div>
-          <div id="finalCode" style="margin-top:10px; font-size:20px; letter-spacing:3px;">balım</div>
+  <section id="finalSection" class="card" style="display:none;">
+    <h2>🎉 Tebrikler, Balım! 🎉</h2>
+    <p>Not ve fotoğraflar senin için hazırlandı.</p>
 
-          <div style="margin-top:10px;">
-            <div style="font-size:13px; opacity:0.9">Şifreyi girdikten sonra sürprizi görebilirsin:</div>
-            <div class="unlockSection">
-              <input id="codeInput" placeholder="Şifreyi gir" />
-              <button id="unlockBtn">Aç</button>
-            </div>
-            <div id="codeMsg" style="margin-top:8px; font-size:13px; opacity:0.9"></div>
-          </div>
-        </div>
+    <div class="note">
+      <p><em>Seninle her an bir mucize... İyi ki varsın, canım Nisa ❤</em></p>
 
-        <div style="margin-top:10px; text-align:center;">
-          <small style="opacity:0.9">Sürpriz tamamen sana özel ❤️</small>
-        </div>
+      <div id="musicControls" style="display:none;">
+        <button id="playPauseBtn" class="btn">Duraklat</button>
+        <button id="muteBtn" class="btn alt">Sessiz</button>
       </div>
     </div>
 
-    <!-- açılacak içerik -->
-    <div class="reveal" id="revealArea">
-      <div class="note">
-        <h2>Canım Nisa'm</h2>
-        <p id="loveNote">
-          Buraya açıldığında göreceğin not: <br />
-          <em>Seninle her anım bir hediye. İyi ki varsın, iyi ki doğdun. Sonsuza kadar H ❤ N.</em>
-        </p>
+    <div id="gallery"></div>
+  </section>
+</main>
 
-        <div class="playerControls tiny" id="playerControls" style="display:none;">
-          <button id="playPauseBtn">Duraklat</button>
-          <button id="muteBtn" class="muted">Sessiz</button>
-          <div style="margin-left:8px; font-size:13px; opacity:0.9">
-            Çalan parça: "Çünkü Sen Varsın..." (YouTube)
-          </div>
-        </div>
-      </div>
+<div id="ytPlayer" style="width:0; height:0; visibility:hidden;"></div>
 
-      <div style="flex: 0 0 720px;">
-        <div style="font-weight: 600; margin-bottom: 8px">Fotoğraflarımız</div>
-        <div class="gallery" id="gallery">
-          <img src="https://hizliresim.com/7onv06v" alt="Fotoğraf 1" />
-          <img src="https://hizliresim.com/r0mn2hw" alt="Fotoğraf 2" />
-          <img src="https://hizliresim.com/qa88r7q" alt="Fotoğraf 3" />
-          <img src="https://hizliresim.com/c2zna96" alt="Fotoğraf 4" />
-          <img src="https://hizliresim.com/e63p98c" alt="Fotoğraf 5" />
-          <img src="https://hizliresim.com/mjefcw5" alt="Fotoğraf 6" />
-          <img src="https://hizliresim.com/pcn8230" alt="Fotoğraf 7" />
-          <img src="https://hizliresim.com/jx9t17f" alt="Fotoğraf 8" />
-          <img src="https://hizliresim.com/5ov3wrg" alt="Fotoğraf 9" />
-          <img src="https://hizliresim.com/a8pxb5c" alt="Fotoğraf 10" />
-          <img src="https://hizliresim.com/6e2asty" alt="Fotoğraf 11" />
-          <img src="https://hizliresim.com/iqgau8s" alt="Fotoğraf 12" />
-          <img src="https://hizliresim.com/lsh150e" alt="Fotoğraf 13" />
-          <img src="https://hizliresim.com/su6sqhm" alt="Fotoğraf 14" />
-          <img src="https://hizliresim.com/nle4tj1" alt="Fotoğraf 15" />
-          <img src="https://hizliresim.com/r4reqnw" alt="Fotoğraf 16" />
-          <img src="https://hizliresim.com/qfbsdu8" alt="Fotoğraf 17" />
-          <img src="https://hizliresim.com/h7nlrjv" alt="Fotoğraf 18" />
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- YouTube player container (gizli ama kontrol edilebilir) -->
-<div
-  id="ytPlayerWrap"
-  style="
-    position: fixed;
-    right: 16px;
-    bottom: 16px;
-    width: 320px;
-    height: 180px;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-    display: none;
-    z-index: 9999;
-  "
->
-  <div id="player"></div>
-</div>
-
+<script src="https://www.youtube.com/iframe_api"></script>
 <script src="app.js"></script>
-<script>
-  // YouTube API callback fonksiyonunu global yapıyoruz
-  function onYouTubeIframeAPIReady() {
-    if (window.onYTReadyCallback) window.onYTReadyCallback();
-  }
-  window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
-</script>
 </body>
 </html>
