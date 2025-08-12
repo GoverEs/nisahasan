@@ -13,7 +13,7 @@ const riddles = [
   { question: "Bir gün evlenirsek balayı için nereye gitmek isteriz?", answer: "antalya", hint: "Deniz, güneş, tatil." }
 ];
 
-// Fotoğraflar
+// Fotoğraflar (18 tane)
 const photos = [
   "https://i.hizliresim.com/7onv06v.jpg",
   "https://i.hizliresim.com/r0mn2hw.jpg",
@@ -59,9 +59,8 @@ const muteBtn = document.getElementById("muteBtn");
 let currentRiddle = 0;
 let player, isPlaying = false;
 
-// Kalp emojileri
+// Kalp emojileri animasyonu
 const heartEmojis = ["💖", "❤️", "💕", "❣️"];
-
 function spawnHeart() {
   const heart = document.createElement("div");
   heart.className = "heart";
@@ -72,12 +71,28 @@ function spawnHeart() {
   hearts.appendChild(heart);
   setTimeout(() => heart.remove(), 11000);
 }
-
 setInterval(spawnHeart, 300);
 
-// Bulmaca yükle
+// Bulmacayı yükle
 function loadRiddle(i = 0) {
   currentRiddle = i;
+
+  if (currentRiddle >= riddles.length) {
+    riddleNumber.textContent = "";
+    riddleQuestion.textContent = "";
+    answerInput.style.display = "none";
+    submitAnswer.style.display = "none";
+    showHint.style.display = "none";
+    hint.textContent = "Tebrikler! Şifreyi aşağıya gir.";
+
+    passwordSection.style.display = "block";
+
+    progressBar.style.width = "100%";
+    progressText.textContent = `${riddles.length} / ${riddles.length}`;
+
+    return;
+  }
+
   riddleNumber.textContent = `Soru ${i + 1}`;
   riddleQuestion.textContent = riddles[i].question;
   answerInput.value = "";
@@ -85,23 +100,21 @@ function loadRiddle(i = 0) {
   answerInput.disabled = false;
   submitAnswer.disabled = false;
   showHint.disabled = false;
+  answerInput.style.display = "inline-block";
+  submitAnswer.style.display = "inline-block";
+  showHint.style.display = "inline-block";
+
   updateProgress();
   answerInput.focus();
   answerInput.classList.remove("correct");
 
-  // Şifre alanı sadece bulmacalar bittiğinde göster
-  if (currentRiddle === riddles.length) {
-    passwordSection.style.display = "block";
-  } else {
-    passwordSection.style.display = "none";
-  }
-  
+  passwordSection.style.display = "none";
   passwordInput.value = "";
   passwordMsg.textContent = "";
 }
 
 function updateProgress() {
-  const percent = ((currentRiddle) / riddles.length) * 100;
+  const percent = (currentRiddle / riddles.length) * 100;
   progressBar.style.width = `${percent}%`;
   progressText.textContent = `${currentRiddle} / ${riddles.length}`;
 }
@@ -109,21 +122,12 @@ function updateProgress() {
 submitAnswer.addEventListener("click", () => {
   const answer = answerInput.value.trim().toLowerCase();
   if (!answer) return;
+
   if (answer === riddles[currentRiddle].answer.toLowerCase()) {
     answerInput.classList.add("correct");
     setTimeout(() => answerInput.classList.remove("correct"), 1000);
     currentRiddle++;
-    if (currentRiddle < riddles.length) {
-      loadRiddle(currentRiddle);
-    } else {
-      loadRiddle(currentRiddle);  // şifreyi göster
-      progressBar.style.width = "100%";
-      progressText.textContent = `${riddles.length} / ${riddles.length}`;
-      hint.textContent = "Tebrikler! Şifreyi aşağıya gir.";
-      answerInput.disabled = true;
-      submitAnswer.disabled = true;
-      showHint.disabled = true;
-    }
+    loadRiddle(currentRiddle);
   } else {
     hint.textContent = "Yanlış cevap. Tekrar dene veya İpucu'ya tıkla.";
     answerInput.classList.add("shake");
@@ -140,7 +144,6 @@ checkPassword.addEventListener("click", () => {
     passwordMsg.textContent = "Şifre doğru! Sürpriz açılıyor...";
     openFinalSection();
 
-    // Müzik başlat
     if (player && player.playVideo) {
       player.playVideo();
       isPlaying = true;
@@ -158,6 +161,7 @@ function openFinalSection() {
   finalSection.style.display = "block";
   musicControls.style.display = "flex";
 
+  gallery.innerHTML = "";
   photos.forEach(url => {
     const img = document.createElement("img");
     img.src = url;
@@ -166,8 +170,7 @@ function openFinalSection() {
   });
 }
 
-// YouTube Player API
-
+// YouTube API
 function onYouTubeIframeAPIReady() {
   player = new YT.Player('ytPlayer', {
     height: '0',
@@ -193,7 +196,7 @@ function onYouTubeIframeAPIReady() {
 }
 
 function onPlayerReady(event) {
-  // Player hazırlandı, otomatik başlatma yok.
+  // Otomatik başlatma yok, bekle şifre girilsin
 }
 
 function onPlayerStateChange(event) {
@@ -202,7 +205,7 @@ function onPlayerStateChange(event) {
   }
 }
 
-// Müzik kontrol butonları
+// Müzik kontrolleri
 playPauseBtn.addEventListener("click", () => {
   if (!player) return;
   if (isPlaying) {
@@ -227,7 +230,7 @@ muteBtn.addEventListener("click", () => {
   }
 });
 
-// Sayfa yüklendiğinde ilk bulmacayı yükle
+// Sayfa yüklendiğinde başlat
 window.onload = () => {
   loadRiddle(0);
 };
