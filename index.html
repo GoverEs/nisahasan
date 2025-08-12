@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Hasan ❤ Nisa - Sürpriz</title>
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Inter:wght@300;400;600&family=Playfair+Display&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -44,7 +44,7 @@
 
         <div class="codeBox">
           <div style="font-size:13px; opacity:0.9">Oyun Bittiğinde sana verilecek şifre:</div>
-          <div id="finalCode" style="margin-top:10px; font-size:20px; letter-spacing:3px; opacity: 0.3;">balım</div>
+          <div id="finalCode" style="margin-top:10px; font-size:20px; letter-spacing:3px; opacity:0.3;">balım</div>
 
           <div style="margin-top:10px;">
             <div style="font-size:13px; opacity:0.9">Şifreyi girdikten sonra sürprizi görebilirsin:</div>
@@ -63,46 +63,34 @@
     </div>
 
     <!-- açılacak içerik -->
-    <div class="reveal" id="revealArea" style="display:none; margin-top: 20px; gap: 20px; flex-wrap: wrap;">
+    <div class="reveal" id="revealArea" style="display:none;">
       <div class="note">
-        <h2>Canım Nisa'm</h2>
+        <h2>H ❤ N</h2>
         <p id="loveNote">
           Buraya açıldığında göreceğin not: <br />
           <em>Seninle her anım bir hediye. İyi ki varsın, iyi ki doğdun. Sonsuza kadar H ❤ N.</em>
         </p>
 
-        <div class="playerControls tiny" id="playerControls" style="display:none; margin-top: 10px;">
+        <div class="playerControls tiny" id="playerControls" style="display:none;">
           <button id="playPauseBtn">Duraklat</button>
           <button id="muteBtn" class="muted">Sessiz</button>
-          <div style="margin-left:8px; font-size:13px; opacity:0.9; display:inline-block; margin-top:6px;">
+          <div style="margin-left:8px; font-size:13px; opacity:0.9">
             Çalan parça: "Çünkü Sen Varsın..." (YouTube)
           </div>
         </div>
       </div>
 
-      <div style="flex: 1 1 360px; max-width: 900px;">
-        <div style="font-weight: 600; margin-bottom: 8px">Fotoğraflarımız</div>
-        <div class="gallery" id="gallery" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap:10px;">
-          <!-- Fotoğraflar JS tarafından yüklenecek -->
+      <div style="flex: 0 0 auto;">
+        <div style="font-weight: 600; margin-bottom: 8px; text-align:center;">Fotoğraflarımız</div>
+        <div class="gallery" id="gallery">
+          <!-- JS ile buraya fotoğraflar eklenecek -->
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Sürpriz tam sayfa -->
-<div id="surprisePage" style="display:none; flex-direction: column; align-items: center; padding: 20px; background: linear-gradient(45deg, #7B2FF7, #F107A3); color: white; height: 100vh; overflow-y: auto;">
-  <h1 style="font-family: 'Great Vibes', cursive; font-size: 3rem; margin-bottom: 10px;">Hasan ❤ Nisa</h1>
-  <p style="font-size: 1.2rem; font-style: italic; margin-bottom: 30px;">Seninle her an bir hediye. İyi ki varsın ❤️</p>
-
-  <div id="surpriseGallery" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; width: 100%; max-width: 900px; margin-bottom: 30px;">
-    <!-- Fotoğraflar ve notlar buraya JS ile gelecek -->
-  </div>
-
-  <div id="ytSurprisePlayer" style="width: 320px; height: 180px; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);"></div>
-</div>
-
-<!-- YouTube player container (gizli) -->
+<!-- YouTube player container (gizli ama kontrol edilebilir) -->
 <div
   id="ytPlayerWrap"
   style="
@@ -123,5 +111,12 @@
 
 <script src="https://www.youtube.com/iframe_api"></script>
 <script src="app.js"></script>
+<script>
+  // YouTube API callback fonksiyonunu global yapıyoruz
+  function onYouTubeIframeAPIReady() {
+    if (window.onYTReadyCallback) window.onYTReadyCallback();
+  }
+  window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
+</script>
 </body>
 </html>
