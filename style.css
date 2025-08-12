@@ -1,231 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Inter:wght@300;400;600&family=Playfair+Display&display=swap');
+
 body {
-  margin: 0;
   font-family: 'Inter', sans-serif;
-  background: linear-gradient(135deg, #8e2de2, #4a00e0);
+  background: linear-gradient(135deg, #a80000, #ff4d4d);
   color: white;
-  min-height: 100vh;
+  margin: 0;
+  padding: 0;
   overflow-x: hidden;
-  position: relative;
 }
 
-.center {
-  max-width: 980px;
-  margin: auto;
-  padding: 20px;
+h1, h2, h3 {
+  font-family: 'Dancing Script', cursive;
+  color: #ffe6e6;
+  text-shadow: 0 0 5px #ffb3b3;
 }
 
-.card {
-  background: rgba(0, 0, 0, 0.45);
-  border-radius: 20px;
-  padding: 25px 30px 30px;
-  box-shadow: 0 8px 24px rgb(255 0 110 / 0.3);
+.card header h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: 3px;
 }
 
 .logo {
-  font-family: 'Great Vibes', cursive;
-  font-size: 42px;
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.5rem;
+  color: #ff6666;
   user-select: none;
-  text-shadow: 0 0 10px #ff46a1;
-}
-
-h1 {
-  font-family: 'Great Vibes', cursive;
-  font-size: 48px;
-  margin: 8px 0 5px;
-  text-shadow: 0 0 15px #ff6ea1;
-}
-
-p {
-  font-size: 16px;
-  line-height: 1.4;
-  opacity: 0.9;
-  user-select: none;
-}
-
-input, button {
-  border-radius: 12px;
-  border: none;
-  outline: none;
-  font-size: 16px;
-  padding: 10px 14px;
-  font-family: 'Inter', sans-serif;
-}
-
-input {
-  flex-grow: 1;
-  margin-top: 12px;
-  background: rgba(255 255 255 / 0.1);
-  color: white;
-}
-
-input::placeholder {
-  color: #eee;
-  opacity: 0.8;
-}
-
-button {
-  cursor: pointer;
-  background: #ff4d8c;
-  color: white;
-  font-weight: 600;
-  transition: background 0.3s ease;
-}
-
-button:hover:not(:disabled) {
-  background: #ff77a6;
-}
-
-button:disabled {
-  opacity: 0.4;
-  cursor: default;
-}
-
-.wrong {
-  animation: shake 0.3s ease;
-  border: 2px solid #f00 !important;
-}
-
-@keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  20%, 60% { transform: translateX(-5px); }
-  40%, 80% { transform: translateX(5px); }
-}
-
-.game {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.riddleBox {
-  flex: 1 1 400px;
-  background: rgba(255 255 255 / 0.05);
-  border-radius: 15px;
-  padding: 20px;
-  box-shadow: inset 0 0 15px rgba(255 255 255 / 0.1);
-  user-select: none;
-}
-
-.riddleBox h3 {
-  margin-top: 0;
-  font-family: 'Great Vibes', cursive;
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-.hint {
-  margin-top: 12px;
-  font-size: 14px;
-  color: #ffadc4;
-  font-style: italic;
-}
-
-.side {
-  flex: 1 1 280px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  user-select: none;
-}
-
-.progress {
-  background: rgba(255 255 255 / 0.1);
-  border-radius: 12px;
-  padding: 12px 14px;
-  box-shadow: inset 0 0 12px rgba(255 255 255 / 0.2);
-}
-
-.bar {
-  height: 10px;
-  background: rgba(255 255 255 / 0.15);
-  border-radius: 10px;
-  margin-top: 6px;
-  overflow: hidden;
-}
-
-.bar i {
-  display: block;
-  height: 10px;
-  width: 0;
-  background: #ff3f8f;
-  border-radius: 10px;
-  transition: width 0.3s ease;
-}
-
-.codeBox {
-  margin-top: 20px;
-  background: rgba(255 255 255 / 0.05);
-  border-radius: 15px;
-  padding: 15px 20px;
-  box-shadow: inset 0 0 12px rgba(255 255 255 / 0.1);
-}
-
-.codeBox #finalCode {
-  font-family: 'Great Vibes', cursive;
-  letter-spacing: 6px;
-  opacity: 0.3;
-  transition: opacity 0.3s ease;
-}
-
-.codeBox #finalCode.visible {
-  opacity: 1;
-}
-
-.unlockSection {
-  margin-top: 10px;
-  display: flex;
-  gap: 8px;
-}
-
-.unlockSection input {
-  flex-grow: 1;
-}
-
-.reveal {
-  display: flex;
-  gap: 30px;
-  margin-top: 20px;
-  user-select: none;
-}
-
-.note {
-  flex: 1 1 320px;
-  background: rgba(255 255 255 / 0.05);
-  border-radius: 15px;
-  padding: 20px;
-  box-shadow: inset 0 0 15px rgba(255 255 255 / 0.1);
-  font-family: 'Great Vibes', cursive;
-}
-
-.note h2 {
-  font-size: 28px;
-  margin-bottom: 10px;
-  user-select: text;
-}
-
-.note p {
-  font-size: 18px;
-  line-height: 1.5;
-  user-select: text;
-}
-
-.playerControls {
-  margin-top: 15px;
-  display: flex;
-  gap: 12px;
-}
-
-.playerControls button {
-  font-size: 14px;
-  padding: 6px 12px;
-  border-radius: 8px;
+  text-shadow: 0 0 8px #ff9999;
 }
 
 .gallery img {
-  width: 100%;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-  cursor: pointer;
+  width: 360px;  /* Daha büyük fotoğraf */
+  height: auto;
+  border-radius: 15px;
+  margin: 10px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.4);
   transition: transform 0.3s ease;
 }
 
@@ -233,31 +42,149 @@ button:disabled {
   transform: scale(1.05);
 }
 
+.note h2 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 3.5rem;
+  text-align: center;
+  margin-bottom: 10px;
+  color: #ff6666;
+  text-shadow: 0 0 10px #ffb3b3, 0 0 20px #ff4d4d;
+  letter-spacing: 5px;
+}
+
+.note p {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  padding: 0 20px;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 20px;
+  color: #fff0f0;
+  text-shadow: 0 0 3px #ff9999;
+}
+
+.reveal {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  margin-top: 25px;
+  padding-bottom: 40px;
+}
+
+.unlockSection input {
+  font-size: 1rem;
+  padding: 7px 12px;
+  border-radius: 8px;
+  border: none;
+  width: 130px;
+}
+
+.unlockSection button {
+  padding: 7px 15px;
+  background: #ff4d4d;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  color: white;
+  font-weight: 600;
+  margin-left: 8px;
+  box-shadow: 0 0 15px #ff9999;
+  transition: background 0.3s ease;
+}
+
+.unlockSection button:hover {
+  background: #e63946;
+}
+
+.surpriseGallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(360px,1fr));
+  gap: 25px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.surpriseGallery div {
+  text-align: center;
+}
+
+.surpriseGallery img {
+  width: 100%;
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+}
+
+.surpriseGallery p {
+  margin-top: 10px;
+  font-style: italic;
+  font-size: 1rem;
+  color: #ffd6d6;
+  text-shadow: 0 0 6px #ff6666;
+}
+
+.playerControls button {
+  padding: 7px 15px;
+  margin-right: 8px;
+  background: #ff6666;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 0 10px #ff9999;
+  transition: background 0.3s ease;
+}
+
+.playerControls button:hover {
+  background: #e63946;
+}
+
+.bar {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  height: 10px;
+  width: 100%;
+  margin-top: 6px;
+  overflow: hidden;
+}
+
+.bar i {
+  display: block;
+  height: 100%;
+  background: #ff6666;
+  width: 0%;
+  border-radius: 6px;
+  transition: width 0.3s ease;
+}
+
+/* Kalp animasyonu */
 .hearts {
   position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   pointer-events: none;
-  top: 0; left: 0; width: 100%; height: 100%;
   overflow: hidden;
-  z-index: 999;
+  z-index: 0;
 }
 
 .heart {
   position: absolute;
-  color: #ff4d8c;
-  font-size: 24px;
   animation-name: floatUp;
-  animation-timing-function: ease-out;
-  animation-iteration-count: 1;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
   user-select: none;
 }
 
 @keyframes floatUp {
   0% {
-    opacity: 1;
     transform: translateY(0) scale(1);
+    opacity: 1;
   }
   100% {
+    transform: translateY(-120vh) scale(1.3);
     opacity: 0;
-    transform: translateY(-150px) scale(1.5);
   }
 }
