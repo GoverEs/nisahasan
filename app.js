@@ -1,18 +1,18 @@
 const riddles = [
   {
-    question: "Beni açarsan beni görürsün, beni kapatırsan beni duyamazsın. Neyim ben?",
-    answer: "kulak",
-    hint: "Duyma organın."
+    question: "Tek Kelime 7 Harf En Sevdiğim Senin Kendin",
+    answer: "Nisanur",
+    hint: "Hasanın Kalbinin Sağibinin İsmi"
   },
   {
-    question: "Üzerinde elbisem yok, hep üstümde taşırım yük. Neyim ben?",
-    answer: "sırt",
-    hint: "Arkanda taşırsın."
+    question: "Buluşucağımız İlk Yer",
+    answer: "Ankara",
+    hint: "Türkiye'nin Başkenti"
   },
   {
-    question: "Gündüz güneş, gece ayım, binlerce ışığım var ama yanmam. Neyim ben?",
-    answer: "yıldız",
-    hint: "Gece gökyüzünde parlarım."
+    question: "Tanıştığımız Yer",
+    answer: "Konya",
+    hint: "Bamya Çorbasının Şehri"
   },
   {
     question: "Suda yaşarım, havada uçamam, çok renkliyim, seni büyülerim. Neyim ben?",
@@ -20,9 +20,9 @@ const riddles = [
     hint: "Denizlerde yaşarım."
   },
   {
-    question: "Hep yürür durur, hiç durmaz ama ayağı yoktur. Neyim ben?",
-    answer: "zaman",
-    hint: "Geçer ve durmaz."
+    question: "20 Ocak Dünya Ne Günü",
+    answer: "Penguen",
+    hint: "Paytak Paytak Yürür."
   }
 ];
 
@@ -248,3 +248,4 @@ window.onload = () => {
   loadRiddle(0);
   updateProgress();
 };
+
