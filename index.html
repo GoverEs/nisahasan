@@ -44,7 +44,7 @@
 
         <div class="codeBox">
           <div style="font-size:13px; opacity:0.9">Oyun Bittiğinde sana verilecek şifre:</div>
-          <div id="finalCode" style="margin-top:10px; font-size:20px; letter-spacing:3px; opacity: 0.2;">balım</div>
+          <div id="finalCode" style="margin-top:10px; font-size:20px; letter-spacing:3px; opacity: 0.3;">balım</div>
 
           <div style="margin-top:10px;">
             <div style="font-size:13px; opacity:0.9">Şifreyi girdikten sonra sürprizi görebilirsin:</div>
@@ -63,7 +63,7 @@
     </div>
 
     <!-- açılacak içerik -->
-    <div class="reveal" id="revealArea" style="display:none;">
+    <div class="reveal" id="revealArea" style="display:none; margin-top: 20px; gap: 20px; flex-wrap: wrap;">
       <div class="note">
         <h2>Canım Nisa'm</h2>
         <p id="loveNote">
@@ -71,26 +71,38 @@
           <em>Seninle her anım bir hediye. İyi ki varsın, iyi ki doğdun. Sonsuza kadar H ❤ N.</em>
         </p>
 
-        <div class="playerControls tiny" id="playerControls" style="display:none;">
+        <div class="playerControls tiny" id="playerControls" style="display:none; margin-top: 10px;">
           <button id="playPauseBtn">Duraklat</button>
           <button id="muteBtn" class="muted">Sessiz</button>
-          <div style="margin-left:8px; font-size:13px; opacity:0.9">
+          <div style="margin-left:8px; font-size:13px; opacity:0.9; display:inline-block; margin-top:6px;">
             Çalan parça: "Çünkü Sen Varsın..." (YouTube)
           </div>
         </div>
       </div>
 
-      <div style="flex: 0 0 360px;">
+      <div style="flex: 1 1 360px; max-width: 900px;">
         <div style="font-weight: 600; margin-bottom: 8px">Fotoğraflarımız</div>
-        <div class="gallery" id="gallery">
-          <!-- JS tarafından eklenecek -->
+        <div class="gallery" id="gallery" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap:10px;">
+          <!-- Fotoğraflar JS tarafından yüklenecek -->
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- YouTube player container (gizli ama kontrol edilebilir) -->
+<!-- Sürpriz tam sayfa -->
+<div id="surprisePage" style="display:none; flex-direction: column; align-items: center; padding: 20px; background: linear-gradient(45deg, #7B2FF7, #F107A3); color: white; height: 100vh; overflow-y: auto;">
+  <h1 style="font-family: 'Great Vibes', cursive; font-size: 3rem; margin-bottom: 10px;">Hasan ❤ Nisa</h1>
+  <p style="font-size: 1.2rem; font-style: italic; margin-bottom: 30px;">Seninle her an bir hediye. İyi ki varsın ❤️</p>
+
+  <div id="surpriseGallery" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; width: 100%; max-width: 900px; margin-bottom: 30px;">
+    <!-- Fotoğraflar ve notlar buraya JS ile gelecek -->
+  </div>
+
+  <div id="ytSurprisePlayer" style="width: 320px; height: 180px; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);"></div>
+</div>
+
+<!-- YouTube player container (gizli) -->
 <div
   id="ytPlayerWrap"
   style="
