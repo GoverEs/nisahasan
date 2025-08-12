@@ -1,86 +1,83 @@
+// Sorular, cevaplar ve ipuçları
 const riddles = [
   {
-    question: "Beni açarsan beni görürsün, beni kapatırsan beni duyamazsın. Neyim ben?",
-    answer: "kulak",
-    hint: "Duyma organın."
+    question: "Seni ilk gördüğümde kalbim hangi hisle doldu?",
+    answer: "aşk",
+    hint: "Bu his bir duygu, iki harfli bir kelime."
   },
   {
-    question: "Üzerinde elbisem yok, hep üstümde taşırım yük. Neyim ben?",
-    answer: "sırt",
-    hint: "Arkanda taşırsın."
+    question: "Birlikte en çok gitmek istediğimiz yer neresi?",
+    answer: "deniz",
+    hint: "Suda olan, mavidir ve tatil demektir."
   },
   {
-    question: "Gündüz güneş, gece ayım, binlerce ışığım var ama yanmam. Neyim ben?",
-    answer: "yıldız",
-    hint: "Gece gökyüzünde parlarım."
+    question: "Beni en çok güldüren özelliğin nedir?",
+    answer: "gülüşün",
+    hint: "Dudaklarından çıkan, mutluluk belirtisi."
   },
   {
-    question: "Suda yaşarım, havada uçamam, çok renkliyim, seni büyülerim. Neyim ben?",
-    answer: "balık",
-    hint: "Denizlerde yaşarım."
+    question: "İsminin baş harfi nedir?",
+    answer: "n",
+    hint: "İsminin ilk harfi."
   },
   {
-    question: "Hep yürür durur, hiç durmaz ama ayağı yoktur. Neyim ben?",
-    answer: "zaman",
-    hint: "Geçer ve durmaz."
+    question: "Son bilmecem, şifreyi öğrenmek için cevapla: Kelime ne?",
+    answer: "balım",
+    hint: "Sevgi dolu, tatlı bir kelime."
   }
 ];
 
-const PASSWORD = "balım";
 const photos = [
-  "https://i.hizliresim.com/7onv06v.jpg",
-  "https://i.hizliresim.com/r0mn2hw.jpg",
-  "https://i.hizliresim.com/qa88r7q.jpg",
-  "https://i.hizliresim.com/c2zna96.jpg",
-  "https://i.hizliresim.com/e63p98c.jpg",
-  "https://i.hizliresim.com/mjefcw5.jpg",
-  "https://i.hizliresim.com/pcn8230.jpg",
-  "https://i.hizliresim.com/jx9t17f.jpg",
-  "https://i.hizliresim.com/5ov3wrg.jpg",
-  "https://i.hizliresim.com/a8pxb5c.jpg",
-  "https://i.hizliresim.com/6e2asty.jpg",
-  "https://i.hizliresim.com/iqgau8s.jpg",
-  "https://i.hizliresim.com/lsh150e.jpg",
-  "https://i.hizliresim.com/su6sqhm.jpg",
-  "https://i.hizliresim.com/nle4tj1.jpg",
-  "https://i.hizliresim.com/r4reqnw.jpg",
-  "https://i.hizliresim.com/qfbsdu8.jpg",
-  "https://i.hizliresim.com/h7nlrjv.jpg"
+  "https://hizliresim.com/7onv06v.jpg",
+  "https://hizliresim.com/r0mn2hw.jpg",
+  "https://hizliresim.com/qa88r7q.jpg",
+  "https://hizliresim.com/c2zna96.jpg",
+  "https://hizliresim.com/e63p98c.jpg",
+  "https://hizliresim.com/mjefcw5.jpg",
+  "https://hizliresim.com/pcn8230.jpg",
+  "https://hizliresim.com/jx9t17f.jpg",
+  "https://hizliresim.com/5ov3wrg.jpg",
+  "https://hizliresim.com/a8pxb5c.jpg",
+  "https://hizliresim.com/6e2asty.jpg",
+  "https://hizliresim.com/iqgau8s.jpg",
+  "https://hizliresim.com/lsh150e.jpg",
+  "https://hizliresim.com/su6sqhm.jpg",
+  "https://hizliresim.com/nle4tj1.jpg",
+  "https://hizliresim.com/r4reqnw.jpg",
+  "https://hizliresim.com/qfbsdu8.jpg",
+  "https://hizliresim.com/h7nlrjv.jpg"
 ];
 
 const notes = [
-  "İlk tanıştığımız günün fotoğrafı.",
-  "Birlikte gezdiğimiz unutulmaz an.",
-  "Gülüşün en güzel halin.",
-  "Seni en çok sevdiğim anlar.",
-  "Hayallerimizi paylaştığımız an.",
-  "El ele verdiğimiz yolculuk.",
-  "Sonsuz sevgimizin simgesi.",
-  "Kalplerimizin birleştiği an.",
-  "Hayatımın en değerli anısı.",
-  "Göz göze geldiğimiz o an.",
-  "Beraber başardığımız her şey.",
-  "Sevgiyle dolu her anımız.",
-  "Birlikte attığımız ilk adım.",
-  "Rüyaları süsleyen anılarımız.",
-  "Sana olan sonsuz bağlılığım.",
-  "Kalbimin tek sahibi sensin.",
-  "Birlikte büyüdüğümüz zamanlar.",
-  "Hayatımın anlamı sensin."
+  "Bu anı hiç unutma, kalbim hep seninle.",
+  "Deniz kıyısında birlikte geçirdiğimiz güzel günler.",
+  "Gülüşün dünyamı aydınlatıyor.",
+  "İsminin baş harfi, kalbimin ritmi.",
+  "Sevgiyle dolu tatlı kelime: balım.",
+  "Sonsuza kadar birlikte olacağız.",
+  "Seninle her an özel.",
+  "Gözlerindeki parıltı, hayatımın ışığı.",
+  "El ele, her engeli aşarız.",
+  "Kalbimde saklı en güzel sır.",
+  "Birlikte yürüdüğümüz yollar çok değerli.",
+  "Gülüşün en güzel melodim.",
+  "Seninle hayat daha güzel.",
+  "En güzel anılar seninle.",
+  "Aşkımız hiç bitmesin.",
+  "Sonsuzlukta el ele.",
+  "Kalbim sadece sana ait.",
+  "İyi ki doğdun, iyi ki varsın."
 ];
 
-let currentRiddleIndex = 0;
-let correctCount = 0;
-let player = null;
-let surprisePlayer = null;
-let isPlaying = false;
+// Şifre
+const PASSWORD = "balım";
 
+// DOM elemanları
 const riddleTitle = document.getElementById("riddleTitle");
 const riddleText = document.getElementById("riddleText");
 const answerInput = document.getElementById("answerInput");
 const submitBtn = document.getElementById("submitBtn");
 const skipBtn = document.getElementById("skipBtn");
-const hint
 const hintText = document.getElementById("hintText");
 const barFill = document.getElementById("barFill");
 const progressText = document.getElementById("progressText");
@@ -92,24 +89,27 @@ const codeMsg = document.getElementById("codeMsg");
 const revealArea = document.getElementById("revealArea");
 const gallery = document.getElementById("gallery");
 
+const loveNote = document.getElementById("loveNote");
+const playerControls = document.getElementById("playerControls");
 const playPauseBtn = document.getElementById("playPauseBtn");
 const muteBtn = document.getElementById("muteBtn");
 
 const heartsContainer = document.getElementById("hearts");
 
-const surprisePage = document.getElementById("surprisePage");
-const surpriseGallery = document.getElementById("surpriseGallery");
-const ytSurprisePlayerDiv = document.getElementById("ytSurprisePlayer");
+let currentRiddleIndex = 0;
+let correctCount = 0;
+let isPlaying = false;
+let player = null;
 
-const START_TIME = 100; // Şarkının 1:40 = 100 saniye başlangıç zamanı
-const END_TIME = 121;   // 2:01 = 121 saniye bitiş zamanı
+const START_TIME = 100; // 1:40 saniye (youtube başlangıç)
+const END_TIME = 121;   // 2:01 saniye (youtube bitiş)
 
-// YouTube player kurulumu
-function onYouTubeIframeAPIReady() {
+// YouTube Player kurulumu
+function onYTReadyCallback() {
   player = new YT.Player('player', {
     height: '180',
     width: '320',
-    videoId: 'iTLUb5UmeJo', // Şarkı ID'si
+    videoId: 'iTLUb5UmeJo',
     playerVars: {
       start: START_TIME,
       end: END_TIME,
@@ -127,9 +127,9 @@ function onYouTubeIframeAPIReady() {
   });
 }
 
-let playerReady = false;
+window.onYTReadyCallback = onYTReadyCallback;
+
 function onPlayerStateChange(event) {
-  // Şarkı bitince durdur
   if (event.data === YT.PlayerState.ENDED) {
     player.stopVideo();
     isPlaying = false;
@@ -162,15 +162,9 @@ function enableCodeInput(enable) {
 }
 
 function showSurprise() {
-  // Oyun bölümünü gizle
   document.querySelector(".game").style.display = "none";
   revealArea.style.display = "flex";
 
-  // Kod girişi alanını gizle
-  codeInput.disabled = true;
-  unlockBtn.disabled = true;
-
-  // Fotoğrafları ve notları galeriye ekle
   gallery.innerHTML = "";
   photos.forEach((src, i) => {
     const img = document.createElement("img");
@@ -180,10 +174,11 @@ function showSurprise() {
     gallery.appendChild(img);
   });
 
-  // Player kontrol görünür yap
-  document.getElementById("playerControls").style.display = "flex";
+  // Notu göster (isteğe bağlı çoklu not)
+  loveNote.innerHTML = `<em>${notes.join("<br><br>")}</em>`;
 
-  // Şarkıyı başlat
+  playerControls.style.display = "flex";
+
   if (player && player.playVideo) {
     player.seekTo(START_TIME);
     player.playVideo();
@@ -194,103 +189,58 @@ function showSurprise() {
 
 submitBtn.addEventListener("click", () => {
   const answer = answerInput.value.trim().toLowerCase();
-  const correctAnswer = riddles[currentRiddleIndex].answer.toLowerCase();
 
   if (!answer) return;
 
-  if (answer === correctAnswer) {
+  if (answer === riddles[currentRiddleIndex].answer.toLowerCase()) {
     correctCount++;
-    currentRiddleIndex++;
-
     updateProgress();
-
+    currentRiddleIndex++;
     if (currentRiddleIndex < riddles.length) {
       loadRiddle(currentRiddleIndex);
     } else {
-      // Bilmeceler bitti
-      riddleTitle.textContent = "Tebrikler!";
-      riddleText.textContent = "Bilmeceleri başarıyla çözdün. Şifre artık aktif.";
+      // Oyun bitti, şifre aktifleşiyor
+      enableCodeInput(true);
+      hintText.style.display = "none";
       answerInput.disabled = true;
       submitBtn.disabled = true;
       skipBtn.disabled = true;
+      riddleTitle.textContent = "Tebrikler!";
 
-      enableCodeInput(true);
+      riddleText.textContent = "Bilmeceleri başarıyla tamamladın. Şifreyi girip sürprizi açabilirsin.";
     }
   } else {
-    // Yanlış cevap animasyonu
     answerInput.classList.add("wrong");
-    setTimeout(() => {
-      answerInput.classList.remove("wrong");
-    }, 500);
+    hintText.style.display = "block";
+    hintText.textContent = "Yanlış cevap, tekrar dene.";
   }
 });
 
+answerInput.addEventListener("input", () => {
+  answerInput.classList.remove("wrong");
+  hintText.style.display = "none";
+});
+
 skipBtn.addEventListener("click", () => {
+  const hint = riddles[currentRiddleIndex].hint;
   hintText.style.display = "block";
-  hintText.textContent = riddles[currentRiddleIndex].hint;
+  hintText.textContent = `İpucu: ${hint}`;
 });
 
 unlockBtn.addEventListener("click", () => {
   const code = codeInput.value.trim().toLowerCase();
   if (code === PASSWORD) {
-    codeMsg.textContent = "Şifre doğru! Sürpriz açılıyor...";
-    showFinalSurprisePage();
+    codeMsg.textContent = "";
+    showSurprise();
   } else {
-    codeMsg.textContent = "Yanlış şifre. Tekrar dene.";
+    codeMsg.textContent = "Şifre yanlış, lütfen tekrar deneyin.";
   }
 });
 
-function showFinalSurprisePage() {
-  // Sürpriz ana sayfasını göster, diğerlerini gizle
-  document.querySelector(".card").style.display = "none";
-  surprisePage.style.display = "flex";
-
-  // Sürpriz galeriyi temizle
-  surpriseGallery.innerHTML = "";
-
-  // Fotoğrafları ve notları ekle
-  photos.forEach((src, i) => {
-    const container = document.createElement("div");
-    container.style.textAlign = "center";
-
-    const img = document.createElement("img");
-    img.src = src;
-    img.alt = `Fotoğraf ${i + 1}`;
-    img.style.width = "100%";
-    img.style.borderRadius = "12px";
-    img.style.boxShadow = "0 4px 10px rgba(0,0,0,0.3)";
-
-    const note = document.createElement("p");
-    note.textContent = notes[i] || "";
-    note.style.marginTop = "8px";
-    note.style.fontSize = "0.9rem";
-    note.style.fontStyle = "italic";
-
-    container.appendChild(img);
-    container.appendChild(note);
-    surpriseGallery.appendChild(container);
-  });
-
-  // Sürpriz sayfa için ayrı bir YouTube player kur
-  surprisePlayer = new YT.Player('ytSurprisePlayer', {
-    height: '180',
-    width: '320',
-    videoId: 'iTLUb5UmeJo',
-    playerVars: {
-      start: START_TIME,
-      end: END_TIME,
-      autoplay: 1,
-      controls: 1,
-      modestbranding: 1,
-      rel: 0,
-      showinfo: 0,
-      iv_load_policy: 3
-    }
-  });
-}
-
+// Player kontrol düğmeleri
 playPauseBtn.addEventListener("click", () => {
   if (!player) return;
+
   if (isPlaying) {
     player.pauseVideo();
     playPauseBtn.textContent = "Oynat";
@@ -303,36 +253,37 @@ playPauseBtn.addEventListener("click", () => {
 
 muteBtn.addEventListener("click", () => {
   if (!player) return;
-  if (player.isMuted()) {
+
+  if (muteBtn.classList.contains("muted")) {
     player.unMute();
     muteBtn.classList.remove("muted");
     muteBtn.textContent = "Sessiz";
   } else {
     player.mute();
     muteBtn.classList.add("muted");
-    muteBtn.textContent = "Sesi Aç";
+    muteBtn.textContent = "Ses Aç";
   }
 });
 
-// Başlangıçta bilmeceyi yükle
-loadRiddle(currentRiddleIndex);
-updateProgress();
-enableCodeInput(false);
-
-// Kalp animasyonu (yağan kalpler)
+// Kalplerin rastgele oluşması (animasyon)
 function createHeart() {
   const heart = document.createElement("div");
-  heart.classList.add("heart");
+  heart.className = "heart";
+  heart.textContent = "❤";
   heart.style.left = Math.random() * 100 + "vw";
-  heart.style.fontSize = (10 + Math.random() * 20) + "px";
-  heart.style.animationDuration = 3 + Math.random() * 3 + "s";
-  heart.style.opacity = Math.random();
-
-  heart.textContent = "❤️";
+  heart.style.animationDuration = 4 + Math.random() * 3 + "s";
+  heart.style.fontSize = 14 + Math.random() * 24 + "px";
   heartsContainer.appendChild(heart);
 
   setTimeout(() => {
     heart.remove();
-  }, 6000);
+  }, 7000);
 }
-setInterval(createHeart, 400);
+
+// Her 350 ms'de yeni kalp
+setInterval(createHeart, 350);
+
+// İlk bilmecenin yüklenmesi
+loadRiddle(currentRiddleIndex);
+updateProgress();
+enableCodeInput(false);
