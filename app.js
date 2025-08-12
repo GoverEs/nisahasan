@@ -1,10 +1,3 @@
-// YouTube video ayarları
-const VIDEO_ID = "iTLUb5UmeJo";
-const START_TIME = 100; // 1:40 (saniye)
-const END_TIME = 121;   // 2:01 (saniye)
-const PASSWORD = "balım";
-
-// Bulmacalar
 const riddles = [
   { question: "Sana ilk hangi kelimeyle hitap ettim?", answer: "balım", hint: "Çok tatlı bir hitap." },
   { question: "Birlikte izlediğimiz ilk film hangisiydi?", answer: "film", hint: "İlk sinema anımız." },
@@ -13,7 +6,6 @@ const riddles = [
   { question: "Bir gün evlenirsek balayı için nereye gitmek isteriz?", answer: "antalya", hint: "Deniz, güneş, tatil." }
 ];
 
-// Fotoğraflar (18 tane)
 const photos = [
   "https://i.hizliresim.com/7onv06v.jpg",
   "https://i.hizliresim.com/r0mn2hw.jpg",
@@ -35,146 +27,144 @@ const photos = [
   "https://i.hizliresim.com/h7nlrjv.jpg"
 ];
 
-// DOM elemanları
-const riddleNumber = document.getElementById("riddleNumber");
-const riddleQuestion = document.getElementById("riddleQuestion");
+const PASSWORD = "balım";
+
+const heartsContainer = document.getElementById("hearts");
+
+const riddleTitle = document.getElementById("riddleTitle");
+const riddleText = document.getElementById("riddleText");
 const answerInput = document.getElementById("answerInput");
-const submitAnswer = document.getElementById("submitAnswer");
-const showHint = document.getElementById("showHint");
-const hint = document.getElementById("hint");
-const progressBar = document.getElementById("progressFill");
+const submitBtn = document.getElementById("submitBtn");
+const skipBtn = document.getElementById("skipBtn");
+const hintText = document.getElementById("hintText");
+
+const barFill = document.getElementById("barFill");
 const progressText = document.getElementById("progressText");
-const passwordSection = document.getElementById("passwordSection");
-const passwordInput = document.getElementById("passwordInput");
-const checkPassword = document.getElementById("checkPassword");
-const passwordMsg = document.getElementById("passwordMsg");
-const gameSection = document.getElementById("game");
-const finalSection = document.getElementById("finalSection");
+
+const finalCodeEl = document.getElementById("finalCode");
+const codeInput = document.getElementById("codeInput");
+const unlockBtn = document.getElementById("unlockBtn");
+const codeMsg = document.getElementById("codeMsg");
+
+const revealArea = document.getElementById("revealArea");
 const gallery = document.getElementById("gallery");
-const hearts = document.getElementById("hearts");
-const musicControls = document.getElementById("musicControls");
+
+const playerControls = document.getElementById("playerControls");
 const playPauseBtn = document.getElementById("playPauseBtn");
 const muteBtn = document.getElementById("muteBtn");
 
-let currentRiddle = 0;
-let player, isPlaying = false;
+let currentRiddleIndex = 0;
+let player;
+let isPlaying = false;
 
-// Kalp emojileri animasyonu
-const heartEmojis = ["💖", "❤️", "💕", "❣️"];
-function spawnHeart() {
-  const heart = document.createElement("div");
-  heart.className = "heart";
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.fontSize = (18 + Math.random() * 20) + "px";
-  heart.style.animationDuration = (4 + Math.random() * 4) + "s";
-  heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
-  hearts.appendChild(heart);
-  setTimeout(() => heart.remove(), 11000);
+// Başlangıçta şifre gizli
+revealArea.style.display = "none";
+playerControls.style.display = "none";
+
+function updateProgress() {
+  const total = riddles.length;
+  barFill.style.width = ((currentRiddleIndex) / total) * 100 + "%";
+  progressText.textContent = `${currentRiddleIndex} / ${total}`;
 }
-setInterval(spawnHeart, 300);
 
-// Bulmacayı yükle
-function loadRiddle(i = 0) {
-  currentRiddle = i;
-
-  if (currentRiddle >= riddles.length) {
-    riddleNumber.textContent = "";
-    riddleQuestion.textContent = "";
+function loadRiddle(index) {
+  if (index >= riddles.length) {
+    // Bulmacalar bitti, şifre göster
+    riddleTitle.textContent = "🎉 Tüm bilmeceler çözüldü!";
+    riddleText.textContent = "Aşağıdaki şifreyi kullanarak sürprizi açabilirsin.";
     answerInput.style.display = "none";
-    submitAnswer.style.display = "none";
-    showHint.style.display = "none";
-    hint.textContent = "Tebrikler! Şifreyi aşağıya gir.";
+    submitBtn.style.display = "none";
+    skipBtn.style.display = "none";
+    hintText.style.display = "none";
 
-    passwordSection.style.display = "block";
-
-    progressBar.style.width = "100%";
-    progressText.textContent = `${riddles.length} / ${riddles.length}`;
-
+    finalCodeEl.style.opacity = 1;
+    codeInput.disabled = false;
+    unlockBtn.disabled = false;
     return;
   }
 
-  riddleNumber.textContent = `Soru ${i + 1}`;
-  riddleQuestion.textContent = riddles[i].question;
+  const current = riddles[index];
+  riddleTitle.textContent = `${index + 1}. Bilmece`;
+  riddleText.textContent = current.question;
   answerInput.value = "";
-  hint.textContent = "";
+  answerInput.style.display = "block";
+  submitBtn.style.display = "inline-block";
+  skipBtn.style.display = "inline-block";
+  hintText.style.display = "none";
+  hintText.textContent = "";
   answerInput.disabled = false;
-  submitAnswer.disabled = false;
-  showHint.disabled = false;
-  answerInput.style.display = "inline-block";
-  submitAnswer.style.display = "inline-block";
-  showHint.style.display = "inline-block";
+  submitBtn.disabled = false;
 
   updateProgress();
   answerInput.focus();
   answerInput.classList.remove("correct");
-
-  passwordSection.style.display = "none";
-  passwordInput.value = "";
-  passwordMsg.textContent = "";
 }
 
-function updateProgress() {
-  const percent = (currentRiddle / riddles.length) * 100;
-  progressBar.style.width = `${percent}%`;
-  progressText.textContent = `${currentRiddle} / ${riddles.length}`;
-}
-
-submitAnswer.addEventListener("click", () => {
+submitBtn.addEventListener("click", () => {
   const answer = answerInput.value.trim().toLowerCase();
   if (!answer) return;
 
-  if (answer === riddles[currentRiddle].answer.toLowerCase()) {
+  if (answer === riddles[currentRiddleIndex].answer.toLowerCase()) {
     answerInput.classList.add("correct");
-    setTimeout(() => answerInput.classList.remove("correct"), 1000);
-    currentRiddle++;
-    loadRiddle(currentRiddle);
+    currentRiddleIndex++;
+    setTimeout(() => {
+      answerInput.classList.remove("correct");
+      loadRiddle(currentRiddleIndex);
+    }, 700);
   } else {
-    hint.textContent = "Yanlış cevap. Tekrar dene veya İpucu'ya tıkla.";
+    hintText.style.display = "block";
+    hintText.textContent = "Yanlış cevap, tekrar dene veya İpucu'ya tıkla.";
     answerInput.classList.add("shake");
-    setTimeout(() => answerInput.classList.remove("shake"), 350);
+    setTimeout(() => answerInput.classList.remove("shake"), 300);
   }
 });
 
-showHint.addEventListener("click", () => {
-  hint.textContent = riddles[currentRiddle].hint;
+skipBtn.addEventListener("click", () => {
+  hintText.style.display = "block";
+  hintText.textContent = riddles[currentRiddleIndex].hint;
 });
 
-checkPassword.addEventListener("click", () => {
-  if (passwordInput.value.trim().toLowerCase() === PASSWORD) {
-    passwordMsg.textContent = "Şifre doğru! Sürpriz açılıyor...";
-    openFinalSection();
-
-    if (player && player.playVideo) {
-      player.playVideo();
-      isPlaying = true;
-      playPauseBtn.textContent = "Duraklat";
-    }
+unlockBtn.addEventListener("click", () => {
+  if (codeInput.value.trim().toLowerCase() === PASSWORD) {
+    codeMsg.textContent = "Şifre doğru! Sürpriz açılıyor...";
+    showSurprise();
   } else {
-    passwordMsg.textContent = "Yanlış şifre. Tekrar deneyin.";
-    passwordInput.classList.add("shake");
-    setTimeout(() => passwordInput.classList.remove("shake"), 350);
+    codeMsg.textContent = "Yanlış şifre. Tekrar deneyin.";
+    codeInput.classList.add("shake");
+    setTimeout(() => codeInput.classList.remove("shake"), 300);
   }
 });
 
-function openFinalSection() {
-  gameSection.style.display = "none";
-  finalSection.style.display = "block";
-  musicControls.style.display = "flex";
+function showSurprise() {
+  revealArea.style.display = "flex";
+  playerControls.style.display = "flex";
 
+  // Fotoğrafları ekle
   gallery.innerHTML = "";
-  photos.forEach(url => {
+  photos.forEach(src => {
     const img = document.createElement("img");
-    img.src = url;
+    img.src = src;
     img.alt = "Anımız";
     gallery.appendChild(img);
   });
+
+  // Müzik başlat
+  if (player && player.playVideo) {
+    player.playVideo();
+    isPlaying = true;
+    playPauseBtn.textContent = "Duraklat";
+  }
 }
 
-// YouTube API
+// YouTube Player API yükleme ve video başlatma
+const VIDEO_ID = "iTLUb5UmeJo"; // Şarkı ID'si
+const START_TIME = 100; // 1:40 = 100 saniye
+const END_TIME = 121;   // 2:01 = 121 saniye
+
 function onYouTubeIframeAPIReady() {
-  player = new YT.Player('ytPlayer', {
-    height: '0',
-    width: '0',
+  player = new YT.Player("player", {
+    height: "0",
+    width: "0",
     videoId: VIDEO_ID,
     playerVars: {
       autoplay: 0,
@@ -189,23 +179,16 @@ function onYouTubeIframeAPIReady() {
       rel: 0,
     },
     events: {
-      onReady: onPlayerReady,
-      onStateChange: onPlayerStateChange,
+      onReady: () => {},
+      onStateChange: (event) => {
+        if (event.data === YT.PlayerState.ENDED) {
+          player.seekTo(START_TIME);
+        }
+      },
     },
   });
 }
 
-function onPlayerReady(event) {
-  // Otomatik başlatma yok, bekle şifre girilsin
-}
-
-function onPlayerStateChange(event) {
-  if (event.data === YT.PlayerState.ENDED) {
-    player.seekTo(START_TIME);
-  }
-}
-
-// Müzik kontrolleri
 playPauseBtn.addEventListener("click", () => {
   if (!player) return;
   if (isPlaying) {
@@ -230,7 +213,26 @@ muteBtn.addEventListener("click", () => {
   }
 });
 
-// Sayfa yüklendiğinde başlat
+// Kalpler animasyonu
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.textContent = "❤";
+
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = 4 + Math.random() * 4 + "s";
+  heart.style.fontSize = 20 + Math.random() * 20 + "px";
+
+  heartsContainer.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 7000);
+}
+
+setInterval(createHeart, 400);
+
+// Sayfa yüklendiğinde ilk bilmeceyi yükle
 window.onload = () => {
   loadRiddle(0);
 };
